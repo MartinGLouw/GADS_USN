@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - PickupTime
+  - Waypoint
+  - ProteinPowder
+  - Creatine
   layers:
   - Default
   - TransparentFX
