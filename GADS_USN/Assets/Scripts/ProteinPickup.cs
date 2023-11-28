@@ -33,6 +33,9 @@ public class ProteinPickup : MonoBehaviour
 
             // Set hasProteinPowder to true
             healthSystem.hasProteinPowder = true;
+
+            // Start a coroutine to switch back to the normal model after a certain amount of time
+            StartCoroutine(SwitchBackAfterTime(PickupDuration));
         }
         // Check if the player has collided with a creatine pickup
         else if (collision.gameObject.CompareTag("Creatine"))
@@ -44,6 +47,15 @@ public class ProteinPickup : MonoBehaviour
             healthSystem.OverHeal(50, PickupDuration);
         }
     }
+    IEnumerator SwitchBackAfterTime(float time)
+    {
+        // Wait for the specified amount of time
+        yield return new WaitForSeconds(time);
+
+        // Switch back to the normal model
+        SwitchToNormalModel();
+    }
+
 
 
     public void TakeDamage(int damage)

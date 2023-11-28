@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
     public float staminaCooldown = 1f; // Changed to 1 second
     public float pickupDuration = 5f; // Duration of the pickup effect
     public Slider staminaBar;
-    public Animator animator; // Reference to the Animator component
+    public Animator animator;
+    public Animator animator1; // Animator for the first object
+    public Animator animator2;// Reference to the Animator component
 
     private bool isJumping = false;
     private bool canDoubleJump = false;
@@ -38,10 +40,19 @@ public class PlayerController : MonoBehaviour
         if (moveX > 0)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * speed);
+            animator.SetBool("Run", true); // Set the Run parameter to true
+            animator2.SetBool("Run", true);
         }
         else if (moveX < 0)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, -180, 0), Time.deltaTime * speed);
+            animator.SetBool("Run", true); // Set the Run parameter to true
+            animator2.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false); // Set the Run parameter to false
+            animator2.SetBool("Run", false);
         }
 
         if (Input.GetButtonDown("Jump") && !isJumping && currentStamina > 0)
@@ -52,6 +63,8 @@ public class PlayerController : MonoBehaviour
             DrainStamina();
             animator.SetTrigger("Jump"); // Set the Jump trigger
             animator.speed = 0.5f;
+            animator1.SetTrigger("Jump");
+            animator2.SetTrigger("Jump");
         }
         else if (Input.GetButtonDown("Jump") && isJumping && canDoubleJump && currentStamina > 0)
         {
@@ -60,6 +73,8 @@ public class PlayerController : MonoBehaviour
             DrainStamina();
             animator.SetTrigger("Jump"); // Set the Jump trigger
             animator.speed = 0.5f;
+            animator1.SetTrigger("Jump");
+            animator2.SetTrigger("Jump");
         }
 
 
