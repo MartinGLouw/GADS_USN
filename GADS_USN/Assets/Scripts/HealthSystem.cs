@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
@@ -42,6 +43,7 @@ public class HealthSystem : MonoBehaviour
             if (currentHealth < 0)
             {
                 currentHealth = 0;
+                SceneManager.LoadScene("MainMenu");
             }
         }
 
