@@ -3,7 +3,42 @@ guid: 2372faec14e33b2418c9b9fd507499c6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass
+    second: {fileID: 2100000, guid: 5c537e4bf80665441ba2c9311cfcec33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Underground
+    second: {fileID: 2100000, guid: e7300ccbfc7a4194cad28296e70eeb39, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: coast_sand_rocks_02_diff_2k
+    second: {fileID: 2800000, guid: 0c2ec1de82b074b4f849e1df664430b6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: coast_sand_rocks_02_nor_gl_2k
+    second: {fileID: 2800000, guid: 766077b96a533c14dbaacc03e30e623e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: coast_sand_rocks_02_rough_2k
+    second: {fileID: 2800000, guid: 3948864acb441ae458978da26b47e5dc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rocks_ground_02_col_2k
+    second: {fileID: 2800000, guid: 0cc903a4a7fbf35438134910cbeb55c1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rocks_ground_02_rough_2k
+    second: {fileID: 2800000, guid: 55520b9841f467547b906d5d4913a687, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
