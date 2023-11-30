@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ProteinPickup : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class ProteinPickup : MonoBehaviour
     public int PickupDuration;
     public AudioClip pickupSound; // Drag your pickup sound here in the inspector
     public AudioSource audioSource;
-    private AudioSource pickupAudioSource; // Separate AudioSource for the pickup sound
+    public AudioSource pickupAudioSource; // Separate AudioSource for the pickup sound
+    public AudioMixerGroup audioMixerGroup;
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class ProteinPickup : MonoBehaviour
 
         // Create a new AudioSource for the pickup sound
         pickupAudioSource = gameObject.AddComponent<AudioSource>();
+        
+        pickupAudioSource.outputAudioMixerGroup = audioMixerGroup;
     }
 
     void OnCollisionEnter(Collision collision)

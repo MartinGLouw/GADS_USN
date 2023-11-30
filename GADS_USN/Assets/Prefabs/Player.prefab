@@ -117,8 +117,8 @@ MonoBehaviour:
   animator2: {fileID: 8517835356577130548}
   walkSound: {fileID: 8300000, guid: e782eaeee91e347419986aeb73e63742, type: 3}
   jumpSound: {fileID: 8300000, guid: acf1c29acd31a104cae46176c6051736, type: 3}
-  pickupSound: {fileID: 0}
-  audioSource2: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 93f73a0b059fc1e449cd3674bd6c7184, type: 3}
+  audioSource2: {fileID: 4067788770184868012}
 --- !u!54 &8879227945425972240
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -181,6 +181,7 @@ MonoBehaviour:
   PickupDuration: 10
   pickupSound: {fileID: 8300000, guid: 93f73a0b059fc1e449cd3674bd6c7184, type: 3}
   audioSource: {fileID: 0}
+  pickupAudioSource: {fileID: 0}
 --- !u!82 &4067788770184868012
 AudioSource:
   m_ObjectHideFlags: 0
