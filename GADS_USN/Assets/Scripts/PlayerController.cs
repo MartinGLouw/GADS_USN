@@ -13,13 +13,18 @@ public class PlayerController : MonoBehaviour
     public Slider staminaBar;
     public Animator animator;
     public Animator animator1; // Animator for the first object
-    public Animator animator2;// Reference to the Animator component
+    public Animator animator2; // Reference to the Animator component
 
     private bool isJumping = false;
     private bool canDoubleJump = false;
     private float currentStamina;
     private Rigidbody rb;
     private bool hasPickup = false;
+    public AudioClip walkSound; // Drag your walk sound here in the inspector
+    public AudioClip jumpSound; // Drag your jump sound here in the inspector
+    private AudioSource audioSource;
+    public AudioClip pickupSound;
+    public AudioSource audioSource2;
 
     void Start()
     {
@@ -28,6 +33,8 @@ public class PlayerController : MonoBehaviour
         currentStamina = stamina;
         staminaBar.maxValue = stamina;
         staminaBar.value = currentStamina;
+        audioSource = GetComponent<AudioSource>();
+        audioSource2 = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,18 +46,37 @@ public class PlayerController : MonoBehaviour
         // Rotate the player to face the direction of movement
         if (moveX > 0)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * speed);
+            // Play walking sound
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = walkSound;
+                audioSource.Play();
+            }
+
+            transform.rotation =
+                Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * speed);
             animator.SetBool("Run", true); // Set the Run parameter to true
             animator2.SetBool("Run", true);
         }
         else if (moveX < 0)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, -180, 0), Time.deltaTime * speed);
+            // Play walking sound
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = walkSound;
+                audioSource.Play();
+            }
+
+            transform.rotation =
+                Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, -180, 0), Time.deltaTime * speed);
             animator.SetBool("Run", true); // Set the Run parameter to true
             animator2.SetBool("Run", true);
         }
         else
         {
+            // Stop walking sound
+            audioSource.Stop();
+
             animator.SetBool("Run", false); // Set the Run parameter to false
             animator2.SetBool("Run", false);
         }
@@ -65,6 +91,10 @@ public class PlayerController : MonoBehaviour
             animator.speed = 0.5f;
             animator1.SetTrigger("Jump");
             animator2.SetTrigger("Jump");
+
+            // Play jumping sound
+            audioSource.clip = jumpSound;
+            audioSource.Play();
         }
         else if (Input.GetButtonDown("Jump") && isJumping && canDoubleJump && currentStamina > 0)
         {
@@ -75,9 +105,11 @@ public class PlayerController : MonoBehaviour
             animator.speed = 0.5f;
             animator1.SetTrigger("Jump");
             animator2.SetTrigger("Jump");
+
+            // Play jumping sound
+            audioSource.clip = jumpSound;
+            audioSource.Play();
         }
-
-
 
         staminaBar.value = currentStamina;
     }
@@ -96,8 +128,9 @@ public class PlayerController : MonoBehaviour
             hasPickup = true;
             Destroy(collision.gameObject);
             StartCoroutine(PickupEffect());
+            audioSource.clip = pickupSound;
+            audioSource.Play();
         }
-        
     }
 
     void Jump()
@@ -113,6 +146,7 @@ public class PlayerController : MonoBehaviour
         {
             currentStamina = 0;
         }
+
         StartCoroutine(StaminaCooldown());
     }
 
